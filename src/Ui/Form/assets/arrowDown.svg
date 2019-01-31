@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="22px" viewBox="0 0 27 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>arrowDown</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="arrowDown">
+            <g transform="translate(12.000000, 6.000000)" fill="#9B9B9B" fill-rule="nonzero" id="Symbols" opacity="0.799999952">
+                <g>
+                    <g id="Icon/Select">
+                        <path d="M3.66003917,5.60607839 C3.32544148,5.27133332 3.32544148,4.72866666 3.66003917,4.39392159 L10.2546714,-2.20780393 C10.4217549,-2.37517648 10.6930504,-2.37517648 10.8601339,-2.20780393 L11.4655964,-1.6017255 C11.63268,-1.43435295 11.63268,-1.16301962 11.4655964,-0.995647069 L5.77872734,4.69674506 C5.61164381,4.86411766 5.61164381,5.13588232 5.77872734,5.30282352 L11.4655964,10.9956471 C11.63268,11.1630196 11.63268,11.4343529 11.4655964,11.6017255 L10.8601339,12.2078039 C10.6930504,12.3751765 10.4217549,12.3751765 10.2546714,12.2078039 L3.66003917,5.60607839 Z" id="Icon-Copy" transform="translate(7.500000, 5.000000) scale(-1, 1) rotate(-90.000000) translate(-7.500000, -5.000000) "></path>
+                    </g>
+                </g>
+            </g>
+            <rect id="Rectangle" fill="#AFAFAF" x="0" y="0" width="1" height="22" rx="0.5"></rect>
+        </g>
+    </g>
+</svg>
