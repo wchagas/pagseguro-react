@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import * as THEME from '../theme';
 import arrowDown from './assets/arrowDown.svg';
 
@@ -22,9 +22,10 @@ const Select = styled.select`
 	background-position: right 14px center;
 	width: 100%;
 	box-sizing: border-box;
+	border-radius: 0.2em;
 
 	${props => props.disabled && `
-			background: ${THEME.DEFAULT_COLOR};
+		background: ${THEME.DEFAULT_COLOR};
 	`}
 
 

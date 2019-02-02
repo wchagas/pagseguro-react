@@ -1,13 +1,13 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const FormGroup = styled.div`
-    margin-bottom: 15px;
+    margin-bottom: 1.2em;
     position: relative;
     overflow: hidden;
 
-    ${props => props.mbMd && css `
-        margin-bottom: 30px;
+    ${props => props.mbMd && css`
+        margin-bottom: 2.4em;
     `}
 
 `;
