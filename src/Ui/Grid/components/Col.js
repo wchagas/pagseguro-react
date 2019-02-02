@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+
 import config, { DIMENSION_NAMES } from '../config'
 
-const isInteger = value => !isNaN(value) &&  parseInt(Number(value)) == value &&  !isNaN(parseInt(value, 10))
+const isInteger = value => !isNaN(value) && parseInt(Number(value)) == value && !isNaN(parseInt(value, 10))
 
 const ModificatorType = PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 
@@ -34,23 +35,23 @@ const Col = styled.div`
 					config(p).media[k]`${
 						isInteger(p[k])
 							? // Integer value
-							  `
+							`
         flex-basis: ${(100 / config(p).gridSize) * p[k]}%;
         max-width: ${(100 / config(p).gridSize) * p[k]}%;
         display: block;
       `
 							: // Boolean
-							  p[k]
+							p[k]
 								? // Auto-width
-								  `
+								`
           flex-grow: 1;
           flex-basis: 0;
           max-width: 100%;
           display: block;
         `
 								: // Hide element
-								  'display: none;'
-					}`
+								'display: none;'
+						}`
 			)}
 
   ${(p) =>

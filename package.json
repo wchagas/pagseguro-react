@@ -36,7 +36,6 @@
 	},
 	"dependencies": {
 		"axios": "^0.18.0",
-		"lodash.isinteger": "^4.0.4",
 		"prop-types": "^15.6.2",
 		"react": "^16.6.1",
 		"react-dom": "^16.6.1",
