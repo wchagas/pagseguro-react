@@ -1,26 +1,31 @@
 import React from 'react'
-import { Grid, Row, Col } from 'react-styled-flexboxgrid'
+import { Grid, Row, Col } from '../../src/Ui/Grid'
 import styled from 'styled-components';
 import DirectPayment from "../Component/DirectPayment"
 
 
-const Session = styled(Col) `
-    margin-bottom: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid #ddd;
+const Session = styled(Col)`
+	margin-top: 2em;
+	margin-bottom: 2em;
 `
 
-const Title = styled.h1 `
-    margin: 20px 0;
+const Title = styled.h1`
+    margin: 0 0 1.2m;
 `
 
-const Description = styled.div `
-    margin: 40px 0 20px 0;
-    line-height: 22px;
+const Description = styled.div`
+    margin: 2em 0;
+	line-height: 1.5em;
 
     p{
-        margin-bottom: 20px;
+        margin-bottom: 1.2em;
     }
+`
+
+const DirectPaymentContainer = styled.div`
+	width: 100%;
+	max-width: 1024px;
+	margin: 6em auto 0;
 `
 
 export default class Component extends React.Component {
@@ -49,21 +54,24 @@ export default class Component extends React.Component {
 	 */
 	render() {
 		return <Grid>
-            <Row>
-                <Session xs={12}>
-                    <Title>Pagamento</Title>
-                    <DirectPayment />
-                    <Description>
+			<Row>
+				<Session xs={12}>
+					<Title>Pagamento</Title>
+					<Description>
 						<p>
-                       	Mi class luctus metus sodales aliquam lacus, rutrum nostra aliquet aenean etiam, volutpat cras adipiscing sagittis ultrices. laoreet elementum leo bibendum libero urna dictumst hac quam senectus, accumsan cursus mi donec nec dapibus risus molestie. cubilia viverra neque suspendisse ut felis posuere netus, quisque vestibulum inceptos molestie tempus risus, pulvinar augue curabitur porta erat vestibulum. tempus proin tempus felis imperdiet semper vestibulum aenean odio, gravida quisque tempor quisque purus aliquet enim nunc donec, aptent suscipit scelerisque risus per eget est. luctus semper ipsum vitae integer lobortis vel fames augue praesent class habitasse, dapibus inceptos litora in ac imperdiet augue dictum justo massa. 
+							Mi class luctus metus sodales aliquam lacus, rutrum nostra aliquet aenean etiam, volutpat cras adipiscing sagittis ultrices.
 						</p>
 						<p>
-	Auctor fringilla bibendum gravida vestibulum odio interdum elementum phasellus per mattis, luctus curabitur felis libero blandit himenaeos maecenas a leo vehicula, viverra leo mattis morbi nisl duis dictum orci tincidunt. pellentesque fusce ligula integer fusce suscipit habitasse dictumst, donec elementum sem himenaeos tempus primis, nostra quisque primis ad porta praesent nec, eleifend nec lorem nisi morbi. convallis lacinia donec sagittis euismod nulla suspendisse vehicula aliquet risus, eleifend fames lectus class id ut arcu scelerisque, eleifend egestas ante in bibendum ipsum sodales a. malesuada sagittis consequat in facilisis at, amet commodo tellus feugiat elit placerat, netus hendrerit sodales lobortis.  
+							Laoreet elementum leo bibendum libero urna dictumst hac quam senectus, accumsan cursus mi donec nec dapibus risus molestie. Cubilia viverra neque suspendisse ut felis posuere netus, quisque vestibulum inceptos molestie tempus risus, pulvinar augue curabitur porta erat vestibulum.
 						</p>
 					</Description>
-                </Session>
-            </Row>
-        </Grid>
+					<DirectPaymentContainer>
+						<DirectPayment />
+					</DirectPaymentContainer>
+				</Session>
+			</Row>
+		</Grid>
+
 	}
 
 }

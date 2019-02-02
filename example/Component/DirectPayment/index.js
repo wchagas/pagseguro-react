@@ -1,15 +1,14 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
-import {DirectPayment, Loading} from '../../../src';
-import config  from '../../config';
+import styled, { css } from 'styled-components';
+import { DirectPayment, Loading } from '../../../src';
+import config from '../../config';
 import axios from 'axios';
 
 const Home = styled.div`
-    margin-top: 20px;
     position: relative;
 `;
 
-const LoadingContainer = styled.div `
+const LoadingContainer = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
@@ -22,7 +21,7 @@ const LoadingContainer = styled.div `
     }
 `
 
-const Feedback = styled.div `
+const Feedback = styled.div`
     background: #f5f5f5;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -43,11 +42,11 @@ const Feedback = styled.div `
     }
 
 
-    ${props => props.error && css `
+    ${props => props.error && css`
         background: none;
         color: red;
         h1{
-           color: red;
+			color: red;
         }
     `}
 
@@ -65,96 +64,96 @@ export default class Component extends React.Component {
 	*/
 	constructor(props) {
 		super(props);
-        this.state = {
+		this.state = {
 
-            loading: false,
-            error: null,
-            success: null,
-            paymentLink: null,
-            paid: false,
+			loading: false,
+			error: null,
+			success: null,
+			paymentLink: null,
+			paid: false,
 
-            session: '',
-
-
-            // Informações do comprador
-            sender: {
-                name: 'Willy Chagas',
-                email: 'chagaswc89@gmail.com',
-                phone: {
-                    areaCode: '48',
-                    number: '91510980',
-                },
-                document: {
-                    type: 'CPF',
-                    value: '18974411008'
-                },
-            },
+			session: '',
 
 
-            // Endereço de entrega
-            shipping: {
-                //addressRequired: false
-                type: 3,
-                cost: 10.00,
+			// Informações do comprador
+			sender: {
+				name: 'Willy Chagas',
+				email: 'chagaswc89@gmail.com',
+				phone: {
+					areaCode: '48',
+					number: '91510980',
+				},
+				document: {
+					type: 'CPF',
+					value: '18974411008'
+				},
+			},
+
+
+			// Endereço de entrega
+			shipping: {
+				//addressRequired: false
+				type: 3,
+				cost: 10.00,
 				street: 'Av João Lima',
-                number: 55,
-                complement: 'Casa',
-                district: 'Campeche',
-                city: 'Florianópolis',
-                state: 'SC',
-                country: 'BRA',
-                postalCode: '88063333'
-           },
+				number: 55,
+				complement: 'Casa',
+				district: 'Campeche',
+				city: 'Florianópolis',
+				state: 'SC',
+				country: 'BRA',
+				postalCode: '88063333'
+			},
 
 
 
-            // Endereço de cobrança
-            billing: {
+			// Endereço de cobrança
+			billing: {
 				street: 'Av João Lima',
-                number: 55,
-                complement: 'Casa',
-                district: 'Campeche',
-                city: 'Florianópolis',
-                state: 'SC',
-                country: 'BRA',
-                postalCode: '88063333'
-           },
+				number: 55,
+				complement: 'Casa',
+				district: 'Campeche',
+				city: 'Florianópolis',
+				state: 'SC',
+				country: 'BRA',
+				postalCode: '88063333'
+			},
 
 
-            // produtos
+			// produtos
 
-            items: [
-                {
-                    id: 1,
-                    description: 'Produto 1',
-                    quantity: 2,
-                    amount: 2,
-                },
-                {
-                    id: 2,
-                    description: 'Produto 2',
-                    quantity: 1,
-                    amount: 60.00,
-                },
-                {
-                    id: 3,
-                    description: 'Produto 3',
-                    quantity: 2,
-                    amount: 20.00,
-                }
+			items: [
+				{
+					id: 1,
+					description: 'Produto 1',
+					quantity: 2,
+					amount: 2,
+				},
+				{
+					id: 2,
+					description: 'Produto 2',
+					quantity: 1,
+					amount: 60.00,
+				},
+				{
+					id: 3,
+					description: 'Produto 3',
+					quantity: 2,
+					amount: 20.00,
+				}
 
-            ],
+			],
 
 
-            // Cartão de crédito
-            creditCard: {
-                maxInstallmentNoInterest: 0
-            },
+			// Cartão de crédito
+			creditCard: {
+				maxInstallmentNoInterest: 0
+			},
 
-            extraAmount: 10.00,
-            reference: 'Teste Pagseguro React'
-        }
-    }
+			extraAmount: 10.00,
+			reference: 'Teste Pagseguro React'
+		}
+	}
 
 
 
@@ -162,7 +161,7 @@ export default class Component extends React.Component {
 	* componentDidMount
 	*/
 	componentDidMount() {
-		const {session} = this.state;
+		const { session } = this.state;
 		if (!session) {
 			axios.post(`${config.endpoint}/session`).then(res => {
 				this.setState({ session: res.data.content })
@@ -177,64 +176,64 @@ export default class Component extends React.Component {
 	*/
 	onSubmit(data) {
 
-        this.setState({
-            loading: true,
-            error: null,
-            success: '',
-            paymentLink: null
-        })
+		this.setState({
+			loading: true,
+			error: null,
+			success: '',
+			paymentLink: null
+		})
 
-        axios.post(`${config.endpoint}/directPayment`, data)
-            .then(res => {
+		axios.post(`${config.endpoint}/directPayment`, data)
+			.then(res => {
 
-                const { content } = res.data
-                let newState = {}
+				const { content } = res.data
+				let newState = {}
 
-                switch (content.method) {
+				switch (content.method) {
 
-                    case 'boleto':
-                        newState = {
-                            success: 'Acesse o link abaixo para imprimir o boleto',
-                            paymentLink: content.paymentLink
-                        }
-                        break;
+					case 'boleto':
+						newState = {
+							success: 'Acesse o link abaixo para imprimir o boleto',
+							paymentLink: content.paymentLink
+						}
+						break;
 
-                    case 'onlineDebit':
-                        newState = {
-                            success: 'Acesse seu baco e finalize a transação',
-                            paymentLink: content.paymentLink
-                        }
-                        break;
+					case 'onlineDebit':
+						newState = {
+							success: 'Acesse seu baco e finalize a transação',
+							paymentLink: content.paymentLink
+						}
+						break;
 
-                    case 'creditCard':
-                        newState = {
-                            success: 'Pagamento realizado com sucesso',
-                        }
-                    break;
-                }
+					case 'creditCard':
+						newState = {
+							success: 'Pagamento realizado com sucesso',
+						}
+						break;
+				}
 
-                this.setState({
-                    paid: true,
-                    loading: false,
-                    ...newState
-                })
-            })
-            .catch(err => {
-                const { content } = err.response.data
-                const error = Array.isArray(content) ? content : [content]
-                this.setState({
-                    loading: false,
-                    error
-                })
-            })
-    }
+				this.setState({
+					paid: true,
+					loading: false,
+					...newState
+				})
+			})
+			.catch(err => {
+				const { content } = err.response.data
+				const error = Array.isArray(content) ? content : [content]
+				this.setState({
+					loading: false,
+					error
+				})
+			})
+	}
 
 
 
 	/**
 	* onError
 	*/
-    onError(error) {
+	onError(error) {
 		console.error(error);
 	}
 
@@ -243,66 +242,66 @@ export default class Component extends React.Component {
 	/**
 	* render
 	*/
-	render(){
+	render() {
 
-        if (!this.state.session) {
+		if (!this.state.session) {
 			return null;
-        }
+		}
 
-        return <Home>
+		return <Home>
 
-            {
-                this.state.loading && <LoadingContainer><Loading /></LoadingContainer>
-            }
+			{
+				this.state.loading && <LoadingContainer><Loading /></LoadingContainer>
+			}
 
-            {
-                !this.state.paid &&
-                <DirectPayment
-                    env="sandbox"
-                    session={this.state.session}
-                    extraAmount={this.state.extraAmount}
-                    reference={this.state.reference}
-                    creditCard={this.state.creditCard}
-                    sender={this.state.sender}
-                    shipping={this.state.shipping}
-                    billing={this.state.billing}
-                    items={this.state.items}
-                    exclude={[
-                        //'CREDIT_CARD'
-                    ]}
-                    onError={this.onError.bind(this)}
-                    onSubmit={this.onSubmit.bind(this)}
-                    /*
-                    hiddenSenderForm
-                    hiddenShippingForm
-                    hiddenBillingForm
-                    */
-                />
-            }
+			{
+				!this.state.paid &&
+				<DirectPayment
+					env="sandbox"
+					session={this.state.session}
+					extraAmount={this.state.extraAmount}
+					reference={this.state.reference}
+					creditCard={this.state.creditCard}
+					sender={this.state.sender}
+					shipping={this.state.shipping}
+					billing={this.state.billing}
+					items={this.state.items}
+					exclude={[
+						//'CREDIT_CARD'
+					]}
+					onError={this.onError.bind(this)}
+					onSubmit={this.onSubmit.bind(this)}
+				/*
+					hiddenSenderForm
+					hiddenShippingForm
+					hiddenBillingForm
+				*/
+				/>
+			}
 
-            {
-                this.state.success && <Feedback>
-                    <h1>{this.state.success}</h1>
-                </Feedback>
-            }
+			{
+				this.state.success && <Feedback>
+					<h1>{this.state.success}</h1>
+				</Feedback>
+			}
 
-            {
-                this.state.error && <Feedback error>
-                    <ul>
-                    {
-                        this.state.error.map((error, key) => (
-                            <li key={key}>{error.code} - {error.message}</li>
-                        ))
-                    }
-                    </ul>
-                </Feedback>
-            }
+			{
+				this.state.error && <Feedback error>
+					<ul>
+						{
+							this.state.error.map((error, key) => (
+								<li key={key}>{error.code} - {error.message}</li>
+							))
+						}
+					</ul>
+				</Feedback>
+			}
 
-            {
-                this.state.paymentLink && <Feedback>
-                    <a href={this.state.paymentLink} target="_blank">ACESSAR</a>
-                </Feedback>
-            }
+			{
+				this.state.paymentLink && <Feedback>
+					<a href={this.state.paymentLink} target="_blank">ACESSAR</a>
+				</Feedback>
+			}
 
 		</Home>
 	}
