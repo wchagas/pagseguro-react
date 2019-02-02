@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, {css} from 'styled-components';
-import {Row,Col} from '../Ui/Grid';
+import styled, { css } from 'styled-components';
+import { Row, Col } from '../Ui/Grid';
 import * as THEME from '../Ui/theme';
-import {Loading as LoadingUi} from '../Ui';
-import {error} from '../Utils';
+import { Loading as LoadingUi } from '../Ui';
+import { error } from '../Utils';
 import { PAGSEGURO_API } from '../config';
 
 import {
@@ -15,14 +15,14 @@ import {
 	Select,
 	Error,
 	FormGroup
-} from 	'../Ui/Form';
+} from '../Ui/Form';
 
 
-const {path} = PAGSEGURO_API;
-const {getError} = error;
+const { path } = PAGSEGURO_API;
+const { getError } = error;
 
 const Container = styled.div`
-	margin:2em 0;
+	margin:2em 0 0;
 `;
 
 const Loading = styled(LoadingUi)`
@@ -32,12 +32,11 @@ const Loading = styled(LoadingUi)`
 
 const Actions = styled.div`
 	margin: 1em 0 0;
-	padding: 1em 0 0;
-	border-top: 1px solid ${THEME.SECONDARY_COLOR};
 	button {
 		padding: 14px 40px;
+		float: right;
 	}
-`;
+`
 
 const Card = styled.img`
 	margin: 0.8em 0 0;
@@ -56,10 +55,10 @@ export default class CreditCard extends React.Component {
 	static propTypes = {
 		cards: PropTypes.array.isRequired,
 		onSubmit: PropTypes.func.isRequired,
-        onError: PropTypes.func.isRequired,
-        reference: PropTypes.string,
-        extraAmount: PropTypes.number,
-        amount: PropTypes.number.isRequired
+		onError: PropTypes.func.isRequired,
+		reference: PropTypes.string,
+		extraAmount: PropTypes.number,
+		amount: PropTypes.number.isRequired
 	}
 
 
@@ -86,7 +85,7 @@ export default class CreditCard extends React.Component {
 
 				// holder
 				name: 'Willy Chagas',
-                birthDate: '22/02/1989',
+				birthDate: '22/02/1989',
 				documentType: 'CPF',
 				documentValue: '18974411008',
 				phoneAreaCode: '48',
@@ -134,7 +133,7 @@ export default class CreditCard extends React.Component {
 	* @param Event e
 	*/
 	handleChange(e) {
-        const { name, value } = e.target;
+		const { name, value } = e.target;
 
 		this.setState({
 			creditCard: {
@@ -164,9 +163,9 @@ export default class CreditCard extends React.Component {
 				...creditCard,
 				amount: amount.toFixed(2)
 			}
-        }, () => {
-            this.cardNumberOnBlur()
-        });
+		}, () => {
+			this.cardNumberOnBlur()
+		});
 	}
 
 
@@ -183,41 +182,41 @@ export default class CreditCard extends React.Component {
 		installment = installment ? installment : installments[0];
 
 		const data = {
-            method: 'CREDIT_CARD',
-            shipping: this.props.shipping,
-            reference: this.props.reference,
-            billing: this.props.billing,
-            sender: this.props.sender,
-            items: this.props.items.map(i => {
-                if (i.amount.toFixed) {
-                    i.amount = i.amount.toFixed(2)
-                }
-                return i
-            }),
-            creditCard: {
-	    		token: creditCard.token,
-		    	installment,
-			    maxInstallmentNoInterest,
-    			holder: {
-	    			name: creditCard.name,
-                    document: {
-                        type: creditCard.documentType,
-                        value: creditCard.documentValue
-                    },
-                    birthDate: creditCard.birthDate,
-                    phone: {
-                        areaCode: creditCard.phoneAreaCode,
-                        number: creditCard.phoneNumber,
-                    },
-                },
-            }
-        }
+			method: 'CREDIT_CARD',
+			shipping: this.props.shipping,
+			reference: this.props.reference,
+			billing: this.props.billing,
+			sender: this.props.sender,
+			items: this.props.items.map(i => {
+				if (i.amount.toFixed) {
+					i.amount = i.amount.toFixed(2)
+				}
+				return i
+			}),
+			creditCard: {
+				token: creditCard.token,
+				installment,
+				maxInstallmentNoInterest,
+				holder: {
+					name: creditCard.name,
+					document: {
+						type: creditCard.documentType,
+						value: creditCard.documentValue
+					},
+					birthDate: creditCard.birthDate,
+					phone: {
+						areaCode: creditCard.phoneAreaCode,
+						number: creditCard.phoneNumber,
+					},
+				},
+			}
+		}
 
-        if (this.props.extraAmount) {
-            data.extraAmount = this.props.extraAmount.toFixed(2)
-        }
+		if (this.props.extraAmount) {
+			data.extraAmount = this.props.extraAmount.toFixed(2)
+		}
 
-        return data
+		return data
 	}
 
 
@@ -226,16 +225,16 @@ export default class CreditCard extends React.Component {
 	* cardNumberOnBlur
 	* @param Event e
 	*/
-    cardNumberOnBlur(e) {
+	cardNumberOnBlur(e) {
 
-        if (e) e.preventDefault()
+		if (e) e.preventDefault()
 
-        const name = 'creditCardNumber'
-        let value = this.state.creditCard.number
+		const name = 'creditCardNumber'
+		let value = this.state.creditCard.number
 
-        if (e && e.target) {
-            value = e.target.value
-        }
+		if (e && e.target) {
+			value = e.target.value
+		}
 
 		this.setState({
 			error: {}
@@ -259,18 +258,18 @@ export default class CreditCard extends React.Component {
 
 			const enabled = this.props.cards.find(item => item.name == brand.brand.name.toUpperCase());
 
-			if ( ! enabled) {
+			if (!enabled) {
 				setError(`Bandeira ${brand.brand.name.toUpperCase()} indisponível para pagamento`);
 				return;
 			}
 
-            const { amount, maxInstallmentNoInterest } = this.state.creditCard
+			const { amount, maxInstallmentNoInterest } = this.state.creditCard
 
-            this.setInstallments(amount, maxInstallmentNoInterest, brand.brand.name)
-        }).catch(err => {
-            console.error(err)
-            setError()
-        });
+			this.setInstallments(amount, maxInstallmentNoInterest, brand.brand.name)
+		}).catch(err => {
+			console.error(err)
+			setError()
+		});
 	}
 
 
@@ -281,7 +280,7 @@ export default class CreditCard extends React.Component {
 	*/
 	setBrand(cardNumber) {
 		this.setState({ processingGetBrand: true });
-		return this.getBrand(cardNumber).then( data => {
+		return this.getBrand(cardNumber).then(data => {
 			this.setState({
 				processingGetBrand: false,
 				creditCard: {
@@ -304,13 +303,13 @@ export default class CreditCard extends React.Component {
 	* getBrand
 	*/
 	getBrand(cardBin) {
-		return new Promise( (resolve, reject) => {
+		return new Promise((resolve, reject) => {
 			PagSeguroDirectPayment.getBrand({
 				cardBin,
-				success: function(response) {
+				success: function (response) {
 					resolve(response);
 				},
-				error: function(response) {
+				error: function (response) {
 					reject(response);
 				}
 			});
@@ -327,7 +326,7 @@ export default class CreditCard extends React.Component {
 	*/
 	setInstallments(amount, maxInstallmentNoInterest, brand) {
 		this.setState({ processingGetInstallments: true });
-		return this.getInstallments(amount, maxInstallmentNoInterest, brand).then( data => {
+		return this.getInstallments(amount, maxInstallmentNoInterest, brand).then(data => {
 			this.setState({
 				processingGetInstallments: false,
 				creditCard: {
@@ -345,15 +344,15 @@ export default class CreditCard extends React.Component {
 	* getInstallments
 	*/
 	getInstallments(amount, maxInstallmentNoInterest, brand) {
-		return new Promise( (resolve, reject) => {
+		return new Promise((resolve, reject) => {
 
 			const params = {
 				amount,
 				brand,
-				success: function(response) {
+				success: function (response) {
 					resolve(response.installments[brand]);
 				},
-				error: function(response) {
+				error: function (response) {
 					reject(response);
 				}
 			};
@@ -372,25 +371,25 @@ export default class CreditCard extends React.Component {
 	* createCardToken
 	*/
 	createCardToken() {
-		return new Promise( (resolve, reject) => {
+		return new Promise((resolve, reject) => {
 
 			const { creditCard } = this.state;
 			const { number, code, brand } = creditCard;
 			const expiration = creditCard.expiration.split('/');
 
 			if (expiration.length < 2) {
-                reject({
-                    expiration: 'Data de validade do cartão incorreta'
-                })
+				reject({
+					expiration: 'Data de validade do cartão incorreta'
+				})
 			}
 
-            if (!brand) {
-                reject({
-                    creditCardNumber: 'Preencha o número do cartão de crédito'
-                })
+			if (!brand) {
+				reject({
+					creditCardNumber: 'Preencha o número do cartão de crédito'
+				})
 			}
 
-            const expirationMonth = expiration[0];
+			const expirationMonth = expiration[0];
 			const expirationYear = expiration[1];
 
 			PagSeguroDirectPayment.createCardToken({
@@ -399,10 +398,10 @@ export default class CreditCard extends React.Component {
 				cvv: code,
 				expirationMonth,
 				expirationYear,
-                success: function(response) {
+				success: function (response) {
 					resolve(response.card.token);
 				},
-				error: function(response) {
+				error: function (response) {
 					console.error(response)
 					let error = '';
 					Object.keys(response.errors).forEach(i => {
@@ -448,7 +447,7 @@ export default class CreditCard extends React.Component {
 		e.preventDefault();
 
 		const error = {};
-        const reg = new RegExp('_', 'g')
+		const reg = new RegExp('_', 'g')
 
 		this.setState({ processing: true, error });
 
@@ -464,7 +463,7 @@ export default class CreditCard extends React.Component {
 			error['phoneAreaCode'] = "Adicione o DDD";
 		}
 
-        if (this.state.creditCard.phoneNumber.replace(reg, '').length < 8) {
+		if (this.state.creditCard.phoneNumber.replace(reg, '').length < 8) {
 			error['phoneNumber'] = "Adicione o telefone";
 		}
 
@@ -472,7 +471,7 @@ export default class CreditCard extends React.Component {
 			error['documentType'] = "CPF inválido";
 		}
 
-		if (this.state.creditCard.documentType == 'CNPJ' && this.state.creditCard.documentValue.replace(reg, '').length != 14){
+		if (this.state.creditCard.documentType == 'CNPJ' && this.state.creditCard.documentValue.replace(reg, '').length != 14) {
 			error['documentType'] = "CNPJ inválido";
 		}
 
@@ -493,22 +492,22 @@ export default class CreditCard extends React.Component {
 			return;
 		}
 
-        this.createCardToken()
-			.then( token => {
+		this.createCardToken()
+			.then(token => {
 				this.setState({
 					creditCard: {
 						...this.state.creditCard,
 						token
 					}
-                }, () => {
-                    this.props.onSubmit(this.getStateData());
-                })
+				}, () => {
+					this.props.onSubmit(this.getStateData());
+				})
 			})
-            .catch(error => {
-                console.error(error)
+			.catch(error => {
+				console.error(error)
 				this.setState({ error });
 			})
-			.then( token => {
+			.then(token => {
 				this.setState({ processing: false });
 			});
 	}
@@ -527,7 +526,7 @@ export default class CreditCard extends React.Component {
 		const brandImage = this.getBrandImage();
 		const documentTypeMask = creditCard.documentType == 'CPF' ? '11111111111' : '11111111111111';
 
-        return <Container>
+		return <Container>
 			<Row>
 				<Col xs={12} sm={6} lg={8}>
 					<FormGroup>
@@ -546,7 +545,7 @@ export default class CreditCard extends React.Component {
 				<Col xs={12} sm={6} md={6}>
 					<FormGroup>
 						<Label>Data de nascimento do portador</Label>
-						<InputMask mask="11/11/1111" placeholder="dd/mm/yyyy" name='birthDate' value={creditCard.birthDate} onChange={this.handleChange}/>
+						<InputMask mask="11/11/1111" placeholder="dd/mm/yyyy" name='birthDate' value={creditCard.birthDate} onChange={this.handleChange} />
 						{this.state.error.birthDate && <Error>{this.state.error.birthDate}</Error>}
 					</FormGroup>
 				</Col>
@@ -570,8 +569,8 @@ export default class CreditCard extends React.Component {
 				<Col xs={12} sm={6} md={6} lg={4}>
 					<FormGroup>
 						<Label>Número do cartão</Label>
-						{ brandImage ? <Card src={brandImage} /> : null }
-						{ processingGetBrand ? <Loading size="xs" /> : ''}
+						{brandImage ? <Card src={brandImage} /> : null}
+						{processingGetBrand ? <Loading size="xs" /> : ''}
 						<InputMask mask="1111111111111111" name='number' placeholder="" value={creditCard.number} onChange={this.handleChange} onBlur={this.cardNumberOnBlur} />
 						{this.state.error.creditCardNumber && <Error>{this.state.error.creditCardNumber}</Error>}
 					</FormGroup>
@@ -580,7 +579,7 @@ export default class CreditCard extends React.Component {
 				<Col xs={6} sm={3} md={4} lg={2}>
 					<FormGroup>
 						<Label>Validade</Label>
-						<InputMask mask="11/1111" placeholder="mm/yyyy" name='expiration' value={creditCard.expiration} onChange={this.handleChange}/>
+						<InputMask mask="11/1111" placeholder="mm/yyyy" name='expiration' value={creditCard.expiration} onChange={this.handleChange} />
 						{this.state.error.expiration && <Error>{this.state.error.expiration}</Error>}
 					</FormGroup>
 				</Col>
@@ -605,18 +604,18 @@ export default class CreditCard extends React.Component {
 												`${item.quantity}x `
 											}
 											{
-												item.installmentAmount.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})
+												item.installmentAmount.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
 											}
 											{
 												item.interestFree ? ' (sem juros)' : (
-													` | Total - ${item.totalAmount.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})} `
+													` | Total - ${item.totalAmount.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} `
 												)
 											}
 										</option>
 									))
 								) : (
-									<option value="">SELECIONAR</option>
-								)
+										<option value="">SELECIONAR</option>
+									)
 							}
 						</Select>
 					</FormGroup>
@@ -625,7 +624,7 @@ export default class CreditCard extends React.Component {
 
 				<Col xs={12}>
 					<Actions>
-						<Button disabled={this.props.processing} onClick={this.pay} color="success">{ this.state.processing ? 'AGUARDE...' : 'REALIZAR PAGAMENTO'}</Button>
+						<Button disabled={this.props.processing} onClick={this.pay} color="success">{this.state.processing ? 'AGUARDE...' : 'REALIZAR PAGAMENTO'}</Button>
 					</Actions>
 				</Col>
 			</Row>

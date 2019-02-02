@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Grid, Col, Row} from '../../Ui/Grid';
+import { Grid, Col, Row } from '../../Ui/Grid';
 import { PAYMENT_METHODS } from '../../config';
 import CreditCard from '../CreditCard';
 import Boleto from '../Boleto';
 import OnlineDebit from '../OnlineDebit';
 import Tab from '../Tab';
-import {Loading} from '../../Ui';
+import { Loading } from '../../Ui';
+
 
 export default class Component extends React.Component {
 
@@ -15,7 +16,7 @@ export default class Component extends React.Component {
     /**
      * DisplayName
      */
-    static displayName = 'DirectPayment/Forms/Payment'
+	static displayName = 'DirectPayment/Forms/Payment'
 
 
 
@@ -26,8 +27,8 @@ export default class Component extends React.Component {
 	*/
 	constructor(props) {
 		super(props);
-        this.state = {
-            amount: 0,
+		this.state = {
+			amount: 0,
 			paymentMethods: null,
 			active: 'CREDIT_CARD'
 		}
@@ -39,7 +40,7 @@ export default class Component extends React.Component {
 	* componentDidMount
 	*/
 	componentWillMount() {
-        PagSeguroDirectPayment.setSessionId(this.props.session)
+		PagSeguroDirectPayment.setSessionId(this.props.session)
 	}
 
 
@@ -48,24 +49,24 @@ export default class Component extends React.Component {
 	* componentDidMount
 	*/
 	componentDidMount() {
-        
-        let value = 0
 
-        if (this.props.extraAmount) {
-            value = (value + parseFloat(this.props.extraAmount))
-        }
+		let value = 0
 
-        if (this.props.shipping && this.props.shipping.cost) {
-            value = value + parseFloat(this.props.shipping.cost)
-        }
+		if (this.props.extraAmount) {
+			value = (value + parseFloat(this.props.extraAmount))
+		}
 
-        value = this.props.items.reduce((total, item) => parseFloat(total + (parseFloat(item.amount) * parseInt(item.quantity))), value)
+		if (this.props.shipping && this.props.shipping.cost) {
+			value = value + parseFloat(this.props.shipping.cost)
+		}
 
-        this.setState({ amount: value })
+		value = this.props.items.reduce((total, item) => parseFloat(total + (parseFloat(item.amount) * parseInt(item.quantity))), value)
+
+		this.setState({ amount: value })
 
 		PagSeguroDirectPayment.getPaymentMethods({
 			amount: value.toFixed(2),
-			success: ({paymentMethods}) => {
+			success: ({ paymentMethods }) => {
 				this.setState({ paymentMethods: this.formatPaymentMethods(paymentMethods) });
 			},
 			error: (data) => {
@@ -87,15 +88,15 @@ export default class Component extends React.Component {
 	* @return {Object}
 	*/
 	formatPaymentMethods(paymentMethods) {
-        
-        const data = []
-        const { exclude } = this.props
 
-        Object.keys(paymentMethods).forEach(key => {
+		const data = []
+		const { exclude } = this.props
 
-            if (exclude.indexOf(key) !== -1) {
-                return
-            }
+		Object.keys(paymentMethods).forEach(key => {
+
+			if (exclude.indexOf(key) !== -1) {
+				return
+			}
 
 			const options = paymentMethods[key].options
 			const optionToArray = []
@@ -111,15 +112,15 @@ export default class Component extends React.Component {
 				...PAYMENT_METHODS[key]
 			})
 
-        })
+		})
 
-        if (data.length == 1) {
-            this.setState({ 
-                active: data[0].name
-            })
-        }
+		if (data.length == 1) {
+			this.setState({
+				active: data[0].name
+			})
+		}
 
-        return data.sort((a,b) => a.order - b.order)
+		return data.sort((a, b) => a.order - b.order)
 	}
 
 
@@ -131,7 +132,7 @@ export default class Component extends React.Component {
 	*/
 	onChangePaymentMethods(method) {
 		this.setState({ active: method.name });
-    }
+	}
 
 
     /**
@@ -139,9 +140,9 @@ export default class Component extends React.Component {
 	*
 	* @param {String} method
 	*/
-    paymentMethodIsEnabled(method) {
-        return this.state.paymentMethods.some(i => i.name == method)
-    }
+	paymentMethodIsEnabled(method) {
+		return this.state.paymentMethods.some(i => i.name == method)
+	}
 
 
 
@@ -153,42 +154,42 @@ export default class Component extends React.Component {
 
 		const { paymentMethods, amount, active } = this.state;
 		const { onSubmit, onError } = this.props;
-        const data = this.props.data || {};
+		const data = this.props.data || {};
 
-        return <div>
-		{
-			paymentMethods ? (
-				<Row>
+		return <div>
+			{
+				paymentMethods ? (
+					<Row>
 
-					<Col xs={12}>
-					{
-						<Tab active={active} data={paymentMethods} onChange={this.onChangePaymentMethods.bind(this)} />
-					}
-					</Col>
+						<Col xs={12}>
+							{
+								<Tab active={active} data={paymentMethods} onChange={this.onChangePaymentMethods.bind(this)} />
+							}
+						</Col>
 
-					<Col xs={12}>
-					{
-						active == 'CREDIT_CARD' && this.paymentMethodIsEnabled('CREDIT_CARD') && (
-							<CreditCard {...this.props} amount={amount} onSubmit={onSubmit} onError={onError} cards={paymentMethods.find(item => item.name == 'CREDIT_CARD').options} />
-						)
-					}
+						<Col xs={12}>
+							{
+								active == 'CREDIT_CARD' && this.paymentMethodIsEnabled('CREDIT_CARD') && (
+									<CreditCard {...this.props} amount={amount} onSubmit={onSubmit} onError={onError} cards={paymentMethods.find(item => item.name == 'CREDIT_CARD').options} />
+								)
+							}
 
-					{
-						active == 'BOLETO' && this.paymentMethodIsEnabled('BOLETO') && (
-							<Boleto {...this.props} amount={amount} onSubmit={onSubmit} onError={onError} data={paymentMethods.find(item => item.name == 'BOLETO').options} />
-						)
-                    }
+							{
+								active == 'BOLETO' && this.paymentMethodIsEnabled('BOLETO') && (
+									<Boleto {...this.props} amount={amount} onSubmit={onSubmit} onError={onError} data={paymentMethods.find(item => item.name == 'BOLETO').options} />
+								)
+							}
 
-                    {
-						active == 'ONLINE_DEBIT' && this.paymentMethodIsEnabled('ONLINE_DEBIT') && (
-							<OnlineDebit {...this.props} amount={amount} onSubmit={onSubmit} onError={onError} banks={paymentMethods.find(item => item.name == 'ONLINE_DEBIT').options} />
-						)
-					}
-					</Col>
+							{
+								active == 'ONLINE_DEBIT' && this.paymentMethodIsEnabled('ONLINE_DEBIT') && (
+									<OnlineDebit {...this.props} amount={amount} onSubmit={onSubmit} onError={onError} banks={paymentMethods.find(item => item.name == 'ONLINE_DEBIT').options} />
+								)
+							}
+						</Col>
 
-				</Row>
-			) : <Loading size="lg" center />
-		}
-        </div>
+					</Row>
+				) : <Loading size="lg" center />
+			}
+		</div>
 	}
 }
