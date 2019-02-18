@@ -57,7 +57,7 @@ export default class Tab extends React.Component {
 					<Button
 						key={key}
 						color={active == item.name ? 'secondary' : 'default'}
-						className={`ps-react-tab ps-react-tab-${active == item.name ? 'active' : ''}`}
+						className={`ps-react-tab-payment-method ps-react-tab-payment-method-${active == item.name ? 'active' : ''}`}
 						onClick={onChange.bind(this, item)}
 					>
 						{item.displayName}

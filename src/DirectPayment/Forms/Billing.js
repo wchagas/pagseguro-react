@@ -122,13 +122,16 @@ export default class Component extends React.Component {
 			if (name == 'useShippingAddress' && value) {
 				this.cache = this.state
 				this.setState(this.props.shipping, () => {
-					this.validate()
-					this.props.onChange(this.state)
+					this.validate(() => {
+						this.props.onChange(this.state)
+					})
+
 				})
 			} else {
 				this.setState(this.cache, () => {
-					this.validate()
-					this.props.onChange(this.state)
+					this.validate(() => {
+						this.props.onChange(this.state)
+					})
 				})
 			}
 		}
@@ -215,14 +218,11 @@ export default class Component extends React.Component {
 		const showUseShippingAddress = shipping && shipping.hasOwnProperty('addressRequired') && shipping.addressRequired
 
 		return <Row>
-			{
-				showUseShippingAddress &&
-				<Col xs={12}>
-					<FormGroup mbMd>
-						<Checkbox checked={this.state.useShippingAddress} value={this.state.useShippingAddress} label="Usar mesmo endereço de entrega" name="useShippingAddress" onChange={this.handleChange} />
-					</FormGroup>
-				</Col>
-			}
+			<Col xs={12}>
+				<FormGroup mbMd>
+					<Checkbox checked={this.state.useShippingAddress} value={this.state.useShippingAddress} label="Usar o mesmo endereço de entrega" name="useShippingAddress" onChange={this.handleChange} />
+				</FormGroup>
+			</Col>
 			<Col xs={12} sm={3} md={2} lg={2}>
 				<FormGroup>
 					<Label>Estado</Label>
@@ -287,4 +287,3 @@ export default class Component extends React.Component {
 		</Row>
 	}
 }
-

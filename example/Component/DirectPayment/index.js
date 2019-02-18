@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { DirectPayment, Loading } from '../../../src';
 import config from '../../config';
 import axios from 'axios';
+import style from './style.css'
 
 const Home = styled.div`
     position: relative;
@@ -249,7 +250,6 @@ export default class Component extends React.Component {
 		}
 
 		return <Home>
-
 			{
 				this.state.loading && <LoadingContainer><Loading /></LoadingContainer>
 			}

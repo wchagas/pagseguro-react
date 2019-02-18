@@ -72,7 +72,7 @@ const CheckMark = styled.span `
     }
 `
 
-export default (props) => <Container>
+export default (props) => <Container className="ps-react-checkbox">
     <MyLabel>{props.label}
     <Checkbox type="checkbox" {...props} />
         <CheckMark />

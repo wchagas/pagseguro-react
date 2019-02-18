@@ -1,0 +1,92 @@
+
+/*
+ * Container
+ */
+.ps-react-direct-payment {}
+
+
+
+/*
+ * Loading
+ */
+.ps-react-loading{
+	animation: rotation .6s infinite linear;
+    border-left: 3px solid black;
+    border-right: 3px solid #2f2f2f;
+    border-bottom: 3px solid #ffffff;
+    border-top: 3px solid white;
+}
+
+
+
+/**
+ * Form
+ */
+.ps-react-form {}
+
+
+/**
+ * Form Group
+ */
+.ps-react-form-group {}
+
+
+/*
+ * Label
+ */
+.ps-react-label {}
+
+
+/*
+ * Input
+ */
+.ps-react-input{}
+
+
+/*
+ * Select
+ */
+.ps-react-select{}
+
+
+/*
+ * Select
+ */
+.ps-react-textarea {}
+
+
+/*
+ * Checkbox
+ */
+.ps-react-checkbox {}
+.ps-react-checkbox:hover input ~ span {}
+.ps-react-checkbox:checked input ~ span {}
+.ps-react-checkbox:checked input:checked ~ span:after {}
+.ps-react-checkbox span:after {}
+.ps-react-checkbox label {}
+.ps-react-checkbox input {}
+.ps-react-checkbox span {}
+.ps-react-checkbox span:after {}
+
+
+/**
+ * Error
+ */
+.ps-react-error{
+
+}
+
+
+/**
+ * Tabs Payment Method
+ */
+.ps-react-tab-payment-method {}
+
+.ps-react-tab-payment-method-active {}
+
+
+/**
+ * Steps
+ */
+.ps-react-step {}
+.ps-react-step-active {}

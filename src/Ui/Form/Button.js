@@ -49,7 +49,7 @@ const Button = styled.button`
 
 export default (props) => (
 	<Button
-		className={`ps-react-btn ${props.color ? 'ps-react-btn-' + props.color : ''} ${props.size ? ' ps-react-btn-' + props.size : ''}`}
+		className={`ps-react-btn ${props.color ? 'ps-react-btn-' + props.color : ''}`}
 		{...props}
 	>
 		{props.children}
