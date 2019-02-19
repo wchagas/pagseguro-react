@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { DirectPayment, Loading } from '../../../build';
+import { DirectPayment, Loading } from 'pagseguro-react';
 import config from '../../config';
 import axios from 'axios';
 import style from './style.css'

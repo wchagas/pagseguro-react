@@ -45,7 +45,7 @@ const Bank = styled.img `
     `}
 
     ${THEME.media.phone `
-        
+
     `}
 `
 
@@ -102,7 +102,7 @@ export default class Component extends React.Component {
      * componentDidMount
      */
     componentDidMount() {
-        const banks = this.props.banks.filter(i => i.status == 'AVAILABLE') 
+        const banks = this.props.banks.filter(i => i.status == 'AVAILABLE')
         this.setState({ banks })
     }
 
@@ -156,7 +156,6 @@ export default class Component extends React.Component {
      */
     onChange(bank, e) {
         e.preventDefault()
-        console.log(bank)
         this.setState({ bank })
     }
 
@@ -187,10 +186,10 @@ export default class Component extends React.Component {
                 <Banks>
                     {
                         banks.map((item, key) => (
-                            <Bank 
+                            <Bank
                                 src={this.getBankImage(item)}
-                                key={key} 
-                                active={item.displayName == bank} 
+                                key={key}
+                                active={item.displayName == bank}
                                 onClick={this.onChange.bind(this, item.displayName)}
                             />
                         ))
