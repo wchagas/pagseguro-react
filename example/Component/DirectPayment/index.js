@@ -79,7 +79,7 @@ export default class Component extends React.Component {
 			// Informações do comprador
 			sender: {
 				name: 'Willy Chagas',
-				email: 'chagaswc89@gmail.com',
+				email: 'c48186756307979379590@sandbox.pagseguro.com.br',
 				phone: {
 					areaCode: '48',
 					number: '91510980',

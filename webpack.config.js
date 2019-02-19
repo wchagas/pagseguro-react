@@ -1,1 +1,5 @@
-module.exports = process.env.npm_lifecycle_event !== 'build' ? require('./webpack/development.js') : require('./webpack/production.js')
+if (process.env.npm_lifecycle_event == 'build') {
+	module.exports = require('./webpack/production.js')
+} else if (process.env.npm_lifecycle_event == 'dev') {
+	module.exports = require('./webpack/development.js')
+}

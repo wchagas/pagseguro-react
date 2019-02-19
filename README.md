@@ -17,7 +17,7 @@ Caso tenha dificuldades para implementar ou precise de um freelancer entre em co
 
 O componente **DirectPayment** deve ser utilizado em caso de compra única. Os métodos disponíveis são: Cartão de crédito, boleto e débito online.
 
-> Você precisará iniciar a sessão em sua api, sem ela o componente se quer será inicializado (**[Veja o exemplo completo aqui](https://github.com/wchagas/pagseguro-nodejs)**).
+> Você precisará iniciar a sessão em sua api, sem ela o componente se quer será inicializado (**[pagseguro-nodejs](https://github.com/wchagas/pagseguro-nodejs)**).
 
 ### Exemplo:
 ```javascript
@@ -164,9 +164,7 @@ O componente **DirectPayment** deve ser utilizado em caso de compra única. Os m
 
 
 
-### Temas
-
-Você pode personalizar o design seguindo a seguinte estrutura:
+### Customização
 
 ```css
 
