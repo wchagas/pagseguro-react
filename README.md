@@ -9,6 +9,10 @@ Pagseguro React cuidará da comunicação com a api do pagseguro, validação e 
 
 Caso tenha dificuldades para implementar ou precise de um freelancer entre em contato: **[atah.com.br](https://atah.com.br)**) | chagaswc89@gmail.com. Se curtir o projeto da um apoio com uma estrelinha bacana e me segue por aqui.  
 
+
+![Preview Pagseguro React](example/preview.gif)
+
+
 ## Instalação
 
     npm install --save pagseguro-react

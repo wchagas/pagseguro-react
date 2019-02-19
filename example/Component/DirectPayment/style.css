@@ -10,11 +10,11 @@
  * Loading
  */
 .ps-react-loading{
-	animation: rotation .6s infinite linear;
+	/*animation: rotation .6s infinite linear;
     border-left: 3px solid black;
     border-right: 3px solid #2f2f2f;
     border-bottom: 3px solid #ffffff;
-    border-top: 3px solid white;
+    border-top: 3px solid white;*/
 }
 
 
