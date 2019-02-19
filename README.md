@@ -1,9 +1,6 @@
 # PAGSEGURO  + REACT
 
 
-**Em desenvolvimento**
-
-
 Além dos métodos tradicionais de pagamento (modal e redirecionamento) o pagseguro disponibiliza uma terceira opção o checkout transparente. Com ele é possível que a transação seja feita diretamente em seu site, sem a necessidade de redirecionamento ou modal. É a solução ideal se você deseja customizar o design e manter o cliente em sua aplicação durante a transação.
 
 Tenha em mente que ainda assim você precisará se comunicar com a api do pagseguro via backend. Toda comunicação é feita utilizando o email de cadastro e um token de segurança, sendo assim, você não deve deixar essas informações no frontend por questões de segurança.  
