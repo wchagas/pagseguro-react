@@ -1,15 +1,20 @@
 {
 	"name": "pagseguro-react",
 	"version": "1.0.0",
-	"description": "",
+	"author": "Willy Chagas <chagaswc89@gmail.com",
+	"description": "Checkout transparente do pagseguro utilizando React",
+	"license": "MIT",
 	"main": "./build/index.js",
 	"scripts": {
+		"dev": "NODE_ENV=development webpack-dev-server",
 		"build": "./node_modules/.bin/webpack -d",
-		"dev": "webpack-dev-server"
+		"clean": "rimraf lib",
+		"prepublish": "npm run clean && npm run test && npm run build"
 	},
 	"peerDependencies": {
-		"react": "^16.6.1",
-		"react-dom": "^16.6.1"
+		"react": "16.x",
+		"react-dom": "16.x",
+		"styled-components": "^4.x"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.2.3",
@@ -21,11 +26,15 @@
 		"@babel/plugin-transform-modules-commonjs": "^7.2.0",
 		"@babel/preset-env": "^7.2.3",
 		"@babel/preset-react": "^7.0.0",
+		"axios": "^0.18.0",
 		"babel-loader": "^8.0.5",
+		"babel-plugin-add-module-exports": "^1.0.0",
 		"compression-webpack-plugin": "^2.0.0",
 		"css-loader": "^2.1.0",
+		"jest": "^24.1.0",
+		"rimraf": "^2.6.2",
 		"style-loader": "^0.23.1",
-		"styled-components": "^4.1.3",
+		"terser-webpack-plugin": "^1.2.2",
 		"uglifyjs-webpack-plugin": "^2.0.1",
 		"url-loader": "^1.1.2",
 		"webpack": "^4.25.1",
@@ -35,12 +44,24 @@
 		"webpack-node-externals": "^1.7.2"
 	},
 	"dependencies": {
-		"axios": "^0.18.0",
 		"prop-types": "^15.6.2",
 		"react": "^16.6.1",
 		"react-dom": "^16.6.1",
+		"styled-components": "^4.1.3",
 		"react-maskedinput": "^4.0.1"
 	},
-	"author": "",
-	"license": "ISC"
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wchagas/pagseguro-react.git"
+	},
+	"bugs": {
+		"url": "https://github.com/wchagas/pagseguro-react/issues"
+	},
+	"homepage": "https://github.com/wchagas/pagseguro-react#readme",
+	"keywords": [
+		"pagseguro",
+		"react",
+		"checkout",
+		"transparente"
+	]
 }

@@ -147,14 +147,14 @@ O componente **DirectPayment** deve ser utilizado em caso de compra única. Os m
 |`billing.number`| *String* :: Número (*obrigatório*)|
 |`billing.complement`| *String* :: Complemento (*opcional*)|
 |`billing.postalCode`| *String* :: Cep (*obrigatório*)|
-`items`| *Array* :: Itens a serem comprados (*obrigatório*)|
-`items[0].id`| *Number* :: Id do produto (*obrigatório*)|
-`items[0].description`| *String* :: Descrição do produto (*obrigatório*)|
-`items[0].quantity`| *Number* :: Quantidade do item (*obrigatório*)|
-`items[0].amount`| *Number* :: Custo individual do item (*obrigatório*)|
-`hiddenSenderForm`| *Number* :: Ocultar formulário do comprador. (*opcional*)|
-`hiddenShippingForm`| *Number* :: Ocultar formulário de endereço de entrega. (*opcional*)|
-`hiddenBillingForm`| *Number* :: Ocultar formulário de endereço de cobrança. (*opcional*)|
+|`items`| *Array* :: Itens a serem comprados (*obrigatório*)|
+|`items[0].id`| *Number* :: Id do produto (*obrigatório*)|
+|`items[0].description`| *String* :: Descrição do produto (*obrigatório*)|
+|`items[0].quantity`| *Number* :: Quantidade do item (*obrigatório*)|
+|`items[0].amount`| *Number* :: Custo individual do item (*obrigatório*)|
+|`hiddenSenderForm`| *Number* :: Ocultar formulário do comprador. (*opcional*)|
+|`hiddenShippingForm`| *Number* :: Ocultar formulário de endereço de entrega. (*opcional*)|
+|`hiddenBillingForm`| *Number* :: Ocultar formulário de endereço de cobrança. (*opcional*)|
 
 
 

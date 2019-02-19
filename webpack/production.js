@@ -1,22 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require("compression-webpack-plugin")
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-const nodeExternals = require('webpack-node-externals')
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, '../build'),
         filename: 'index.js',
-        //pathinfo: false,
-        //library: 'pagseguro-react',
-      	libraryTarget: 'commonjs',
-        //umdNamedDefine: true
+		libraryTarget: 'umd'
     },
-
-	devtool: 'source-map',
 
 	mode: 'production',
 
@@ -25,36 +19,17 @@ module.exports = {
     },
 
 	optimization: {
-       
-	/*	
-		splitChunks: {
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    chunks: 'all'
-                },
-                runtime: 'initial',
+        minimizer: [new TerserPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: true,
+            extractComments: true,
+            terserOptions: {
+                module: true,
+                keep_classnames: false,
+                keep_fnames: false
             }
-        },
-		
-		splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendor',
-                    chunks: 'initial'
-                }
-            }
-        },
-		*/
-        minimizer: [
-            new UglifyJsPlugin({
-                cache: true,
-                parallel: true,
-                sourceMap: true
-            }),
-        ]
+        })]
     },
 
     module: {
@@ -62,24 +37,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-                options: {
-                    presets: [
-                        ['env', {
-                            useBuiltIns: 'usage',
-                            modules: false,
-                        }],
-                        "react",
-                    ],
-                    plugins: [
-						"babel-plugin-styled-components",
-                        "transform-object-rest-spread",
-                        "transform-class-properties",
-                        ["transform-es2015-modules-commonjs", {
-                            "allowTopLevelThis": true
-                        }]                        
-                    ]
-                }
+                loader: 'babel-loader'
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -95,14 +53,14 @@ module.exports = {
     },
     plugins: [
 
-		new BundleAnalyzerPlugin(),
+		//new BundleAnalyzerPlugin(),
 
 	    new webpack.optimize.AggressiveMergingPlugin(),
 
 		new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false,
-        }),		
+        }),
 
 		new CompressionPlugin({
             test: /\.js$/,
@@ -117,5 +75,22 @@ module.exports = {
 
     ],
 
-    externals: [nodeExternals()]
+	externals: {
+		"styled-components": {
+            commonjs: 'styled-components',
+            commonjs2: 'styled-components',
+            amd: 'styled-components'
+        },
+        "react": {
+            commonjs: 'react',
+            commonjs2: 'react',
+            amd: 'react'
+        },
+        "react-dom": {
+            commonjs: 'react-dom',
+            commonjs2: 'react-dom',
+            amd: 'react-dom'
+        }
+    },
+
 }
