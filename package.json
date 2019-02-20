@@ -1,10 +1,10 @@
 {
 	"name": "pagseguro-react",
-	"version": "1.0.2",
+	"version": "1.0.6",
 	"author": "Willy Chagas <chagaswc89@gmail.com",
 	"description": "Checkout transparente do pagseguro utilizando React",
 	"license": "MIT",
-	"main": "./build/index.js",
+	"main": "./lib/index.js",
 	"scripts": {
 		"dev": "NODE_ENV=development webpack-dev-server",
 		"build": "./node_modules/.bin/webpack -d",
