@@ -189,8 +189,8 @@ export default class Component extends React.Component {
                             <Bank
                                 src={this.getBankImage(item)}
                                 key={key}
-                                active={item.displayName == bank}
-                                onClick={this.onChange.bind(this, item.displayName)}
+                                active={item.name == bank}
+                                onClick={this.onChange.bind(this, item.name)}
                             />
                         ))
                     }
