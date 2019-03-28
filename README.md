@@ -5,7 +5,7 @@ Além dos métodos tradicionais de pagamento (modal e redirecionamento) o pagseg
 
 Tenha em mente que ainda assim você precisará se comunicar com a api do pagseguro via backend. Toda comunicação é feita utilizando o email de cadastro e um token de segurança, sendo assim, você não deve deixar essas informações no frontend por questões de segurança.  
 
-Pagseguro React cuidará da comunicação com a api do pagseguro, validação e estruturação dos dados necessários para que você envie para o pagseguro (via backend). Se você usa nodejs vai gostar do módulo que criei: ([pagseguro-nodejs](https://github.com/wchagas/pagseguro-nodejs)), caso contrário, você encontrará libs para outras linguagens no próprio site do pagseguro.
+Pagseguro React cuidará da comunicação com a api do pagseguro, validação e estruturação dos dados necessários para que você envie para o pagseguro (via backend). Se você usa nodejs vai gostar do módulo que criei: ([pagseguro-node](https://github.com/wchagas/pagseguro-node)), caso contrário, você encontrará libs para outras linguagens no próprio site do pagseguro.
 
 Caso tenha dificuldades para implementar ou precise de um freelancer entre em contato: **[atah.com.br](https://atah.com.br)**) | chagaswc89@gmail.com. Se curtir o projeto da um apoio com uma estrelinha bacana e me segue por aqui.  
 
@@ -21,7 +21,7 @@ Caso tenha dificuldades para implementar ou precise de um freelancer entre em co
 
 O componente **DirectPayment** deve ser utilizado em caso de compra única. Os métodos disponíveis são: Cartão de crédito, boleto e débito online.
 
-> Você precisará iniciar a sessão em sua api, sem ela o componente se quer será inicializado (**[pagseguro-nodejs](https://github.com/wchagas/pagseguro-nodejs)**).
+> Você precisará iniciar a sessão em sua api, sem ela o componente se quer será inicializado (**[pagseguro-node](https://github.com/wchagas/pagseguro-node)**).
 
 ### Exemplo:
 ```javascript
