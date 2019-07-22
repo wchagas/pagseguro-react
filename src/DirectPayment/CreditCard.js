@@ -62,13 +62,11 @@ export default class CreditCard extends React.Component {
 	}
 
 
-
 	/**
 	* defaultProps
 	*/
 	static defaultProps = {
 	}
-
 
 
 	/**
@@ -84,20 +82,20 @@ export default class CreditCard extends React.Component {
 			creditCard: {
 
 				// holder
-				name: 'Willy Chagas',
-				birthDate: '22/02/1989',
+				name: '',
+				birthDate: '',
 				documentType: 'CPF',
-				documentValue: '18974411008',
-				phoneAreaCode: '48',
-				phoneNumber: '991510980',
+				documentValue: '',
+				phoneAreaCode: '',
+				phoneNumber: '',
 
 				// card
 				token: '',
-				number: '4111111111111111',
-				code: '123',
-				expiration: '12/2030',
-				expirationMonth: '12',
-				expirationYear: '2030',
+				number: '',
+				code: '',
+				expiration: '',
+				expirationMonth: '',
+				expirationYear: '',
 				installment: "",
 				installments: [],
 				brand: null,

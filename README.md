@@ -156,14 +156,15 @@ O componente **DirectPayment** deve ser utilizado em caso de compra única. Os m
 |`hiddenSenderForm`| *Number* :: Ocultar formulário do comprador. (*opcional*)|
 |`hiddenShippingForm`| *Number* :: Ocultar formulário de endereço de entrega. (*opcional*)|
 |`hiddenBillingForm`| *Number* :: Ocultar formulário de endereço de cobrança. (*opcional*)|
+|`exclude`| *Array* :: Ocultar métodos de pagamento. Opções ['CREDIT_CARD', 'ONLINE_DEBIT', 'BOLETO'] (*opcional*)|
 
 
 
-### Métodos:
+### Eventos:
 
-|MÉTODO                          |DESCRIÇÃO                         |
+|EVENTO                          |DESCRIÇÃO                         |
 |-------------------------------|-----------------------------|
-|`onSuccess`            | Disparado em caso de sucesso. Retorna um objeto com todos os dados necessário para o envio.           |
+|`onSuccess`            | Disparado em caso de sucesso. Retorna um objeto com todos os dados necessários a serem enviados à sua api.           |
 |`onError`            | Disparado em caso de erro.     
 
 

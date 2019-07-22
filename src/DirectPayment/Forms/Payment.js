@@ -114,13 +114,15 @@ export default class Component extends React.Component {
 
 		})
 
-		if (data.length == 1) {
+		const result = data.sort((a, b) => a.order - b.order)
+
+		if (result.length > 0) {
 			this.setState({
-				active: data[0].name
+				active: result[0].name
 			})
 		}
 
-		return data.sort((a, b) => a.order - b.order)
+		return result
 	}
 
 

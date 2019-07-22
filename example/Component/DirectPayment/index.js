@@ -267,7 +267,9 @@ export default class Component extends React.Component {
 					billing={this.state.billing}
 					items={this.state.items}
 					exclude={[
-						//'CREDIT_CARD'
+						// 'CREDIT_CARD',
+						//'ONLINE_DEBIT',
+						//'BOLETO'
 					]}
 					onError={this.onError.bind(this)}
 					onSubmit={this.onSubmit.bind(this)}
