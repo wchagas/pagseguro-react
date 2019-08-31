@@ -200,6 +200,8 @@ export default class Component extends React.Component {
 			newState = { ...newState, ...data }
 		}
 
+		console.log(this.state)
+
 		this.setState(newState)
 	}
 
@@ -269,7 +271,7 @@ export default class Component extends React.Component {
 
 					{
 						active == 'payment' &&
-						<Payment onChangeStep={this.onChangeStep.bind(this)} {...props} />
+						<Payment onChangeStep={this.onChangeStep.bind(this)} {...props} {...this.state} />
 					}
 				</Forms>
 

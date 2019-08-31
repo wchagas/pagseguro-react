@@ -184,7 +184,10 @@ export default class CreditCard extends React.Component {
 			shipping: this.props.shipping,
 			reference: this.props.reference,
 			billing: this.props.billing,
-			sender: this.props.sender,
+			sender: {
+				...this.props.sender,
+				hash: PagSeguroDirectPayment.getSenderHash(),
+			},
 			items: this.props.items.map(i => {
 				if (i.amount.toFixed) {
 					i.amount = i.amount.toFixed(2)

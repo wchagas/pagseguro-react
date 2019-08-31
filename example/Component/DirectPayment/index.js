@@ -96,11 +96,11 @@ export default class Component extends React.Component {
 				//addressRequired: false
 				type: 3,
 				cost: 10.00,
-				street: 'Av João Lima',
+				street: 'Av Joao Lima',
 				number: 55,
 				complement: 'Casa',
 				district: 'Campeche',
-				city: 'Florianópolis',
+				city: 'Florianopolis',
 				state: 'SC',
 				country: 'BRA',
 				postalCode: '88063333'
@@ -110,11 +110,11 @@ export default class Component extends React.Component {
 
 			// Endereço de cobrança
 			billing: {
-				street: 'Av João Lima',
+				street: 'Av Joao Lima',
 				number: 55,
 				complement: 'Casa',
 				district: 'Campeche',
-				city: 'Florianópolis',
+				city: 'Florianopolis',
 				state: 'SC',
 				country: 'BRA',
 				postalCode: '88063333'
@@ -176,6 +176,9 @@ export default class Component extends React.Component {
 	* onSubmit
 	*/
 	onSubmit(data) {
+
+		console.log('sending to API...')
+		console.log(data)
 
 		this.setState({
 			loading: true,

@@ -1,6 +1,6 @@
 {
 	"name": "pagseguro-react",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"author": "Willy Chagas <chagaswc89@gmail.com",
 	"description": "Checkout transparente do pagseguro utilizando React",
 	"license": "MIT",
