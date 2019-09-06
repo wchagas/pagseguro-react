@@ -200,8 +200,6 @@ export default class Component extends React.Component {
 			newState = { ...newState, ...data }
 		}
 
-		console.log(this.state)
-
 		this.setState(newState)
 	}
 
