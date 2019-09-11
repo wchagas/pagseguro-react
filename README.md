@@ -32,6 +32,8 @@ O componente **DirectPayment** deve ser utilizado em caso de compra única. Os m
 
 	    session: '',
 
+	    env: '',
+
 	    sender: {
 	        name: 'Willy Chagas',
 	        email: 'chagaswc89@gmail.com',
@@ -100,6 +102,7 @@ O componente **DirectPayment** deve ser utilizado em caso de compra única. Os m
 
 	// render...
     <DirectPayment
+	    env={this.state.env}
 	    session={this.state.session}
 	    extraAmount={this.state.extraAmount}                                       
 	    reference={this.state.reference}
@@ -117,7 +120,8 @@ O componente **DirectPayment** deve ser utilizado em caso de compra única. Os m
 
 |PROPRIEDADE                          |DESCRIÇÃO                         |
 |-------------------------------|-----------------------------|
-|`session`            |*String* :: Sessão gerada pela sua api (*obrigatório*)'            |
+|`session`            |*String* :: Sessão gerada pela sua api (*obrigatório*)            |
+|`env`            |*String* :: Ambiente da aplicação ("sandbox" ou "production")            |
 |`extraAmount`            |*Number* :: Custo extra. Formato com 2 casas decimais (*opcional*)         |
 |`reference`            |*String* :: Breve descrição sobre o pagamento. *Você verá essa informação no painel do pagseguro* (*opcional*)'            |
 |`creditCard`            |*Object* :: Dados necessários para pagamento via cartão de crédito (*obrigatório*)            |
