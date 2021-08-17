@@ -7,7 +7,7 @@ Tenha em mente que ainda assim você precisará se comunicar com a api do pagseg
 
 Pagseguro React cuidará da comunicação com a api do pagseguro, validação e estruturação dos dados necessários para que você envie para o pagseguro (via backend). Se você usa nodejs vai gostar do módulo que criei: ([pagseguro-node](https://github.com/wchagas/pagseguro-node)), caso contrário, você encontrará libs para outras linguagens no próprio site do pagseguro.
 
-Caso tenha dificuldades para implementar ou precise de um freelancer entre em contato: **[atah.com.br](https://atah.com.br)**) | chagaswc89@gmail.com. Se curtir o projeto da um apoio com uma estrelinha bacana e me segue por aqui.  
+Caso tenha dificuldades para implementar ou precise de um freelancer entre em contato: chagaswc89@gmail.com. Se curtir o projeto da um apoio com uma estrelinha bacana e me segue por aqui.  
 
 
 ![Preview Pagseguro React](example/preview.gif)
